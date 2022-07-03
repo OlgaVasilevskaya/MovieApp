@@ -2,10 +2,12 @@ import {Link} from 'react-router-dom';
 
 import './page404.scss';
 
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+
 const Page404 = () => {
   return (
     <div className='page-404'>
-      <p>404 not wound, we have no such page</p>
+      <ErrorMessage />
       <Link to='/'>
         <button>Go to home page</button>
       </Link>

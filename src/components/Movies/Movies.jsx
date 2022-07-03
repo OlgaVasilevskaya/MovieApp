@@ -1,28 +1,40 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useError} from 'react';
 
 import './movies.scss';
 
 import Movie from '../Movie/Movie';
+import Spinner from '../Spinner/Spinner';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(true);
 
   useEffect(() => {
     fetchItems([]);
   }, []);
 
-  const fetchItems = useCallback(async () => {
-    setIsLoading(true);
+  const fetchItems = useCallback( async () => {
+    try {
+      setIsLoading(true);
+      setIsError(false);
 
-    const data = await fetch(
-      `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
-    );
+      const data = await fetch(
+        `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
+      )
 
-    const resultList = await data.json();
-    console.log(movies, 'movies');
-    setMovies(resultList);
-    setIsLoading(false);
+      const resultList = await data.json();
+
+      setMovies(resultList);
+      setIsLoading(false);
+      setIsError(true);
+
+      if(!isError) {
+        throw new Error('Ooops, something went wrong');
+      }
+    } catch(e) {
+        alert(e.message);
+    }
   }, []);
 
   // if (isError) {
@@ -33,7 +45,7 @@ const Movies = () => {
     <div className='movies'>
       {
         isLoading
-          ? (<div className='loader-movies'></div>)
+          ? <Spinner />
           : (
               <>
                 {movies.map((m) => <Movie key={m.eventId} movie={m} />)}
