@@ -14,6 +14,7 @@ const Movies = () => {
 
   const fetchItems = useCallback(async () => {
     setIsLoading(true);
+
     const data = await fetch(
       `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
     );
@@ -24,15 +25,15 @@ const Movies = () => {
     setIsLoading(false);
   }, []);
 
-  // if (isLoading) {
-  //   return <div>Movies are loading</div>
+  // if (isError) {
+  //   return <div>Ooops, something went wrong</div>
   // }
 
   return (
     <div className='movies'>
       {
         isLoading
-          ? (<div>Movies are loading</div>)
+          ? (<div className='loader-movies'></div>)
           : (
               <>
                 {movies.map((m) => <Movie key={m.eventId} movie={m} />)}

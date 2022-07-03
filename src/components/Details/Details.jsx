@@ -30,7 +30,7 @@ function Details({ match }) {
     <div>
       {
         isLoading
-          ? (<div>Information is loading</div>)
+          ? (<div className='loader-details'></div>)
           : (
             <>
               {movie.map((m) => 
