@@ -1,10 +1,12 @@
+import React from 'react';
 import {Link} from 'react-router-dom';
 
-import './page404.scss';
+import ErrorMessage from '../ErrorMessage';
 
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import './notFoundPage.scss';
 
 const Page404 = () => {
+
   return (
     <div className='page-404'>
       <ErrorMessage />

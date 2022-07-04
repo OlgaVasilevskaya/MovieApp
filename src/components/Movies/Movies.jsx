@@ -1,23 +1,24 @@
-import React, {useState, useEffect, useCallback, useError} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+
+import Movie from '../Movie';
+import Spinner from '../Spinner';
 
 import './movies.scss';
 
-import Movie from '../Movie/Movie';
-import Spinner from '../Spinner/Spinner';
-
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
+
   const [isError, setIsError] = useState(true);
 
   useEffect(() => {
-    fetchItems([]);
+    fetchItems();
   }, []);
 
-  const fetchItems = useCallback( async () => {
+  const fetchItems = useCallback(async () => {
     try {
       setIsLoading(true);
-      setIsError(false);
 
       const data = await fetch(
         `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
@@ -27,13 +28,14 @@ const Movies = () => {
 
       setMovies(resultList);
       setIsLoading(false);
-      setIsError(true);
 
-      if(!isError) {
+      if(isError) {
         throw new Error('Ooops, something went wrong');
       }
     } catch(e) {
-        alert(e.message);
+        console.log(e.message);
+        setIsError(true);
+        console.log(setIsError, 'setIsError');
     }
   }, []);
 

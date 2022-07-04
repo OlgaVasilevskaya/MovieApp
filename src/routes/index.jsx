@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Movies from '../components/Movies/Movies';
 import Header from '../components/Header/Header';
 import Details from '../components/Details/Details';
-import Page404 from '../components/Page404/Page404';
+import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
 
 const AppRoutes = () => (
   <Router>
@@ -12,7 +12,7 @@ const AppRoutes = () => (
     <Routes>
       <Route path='/' element={<Movies />} />
       <Route path='/movie/:eventId' element={<Details />} />
-      <Route path='*' element={<Page404 />}></Route>
+      <Route path='*' element={<NotFoundPage />}></Route>
     </Routes>
   </Router>
 )

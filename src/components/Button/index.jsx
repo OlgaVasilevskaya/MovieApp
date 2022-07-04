@@ -4,9 +4,7 @@ import './button.scss';
 
 function Button() {
   return (
-    <div className='button'>
-      <button>Buy ticket</button>
-    </div>
+    <button className='button-buy'>Buy ticket</button>
   );
 }
 

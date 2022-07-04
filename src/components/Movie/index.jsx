@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import './movie.scss';
+import Button from '../Button';
 
-import Button from '../Button/Button';
+import './movie.scss';
 
 const Movie = (props) => {
   const {movie} = props;
