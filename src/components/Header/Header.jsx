@@ -9,6 +9,7 @@ import './header.scss';
 const Header = () => {
 
   return (
+
     <div className='header'>
        <img src={logo} alt="logo" />
        <SearchInput />
