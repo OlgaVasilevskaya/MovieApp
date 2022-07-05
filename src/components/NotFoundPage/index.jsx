@@ -5,11 +5,12 @@ import ErrorMessage from '../ErrorMessage';
 
 import './notFoundPage.scss';
 
-const Page404 = () => {
+const NotFoundPage = () => {
 
   return (
     <div className='page-404'>
       <ErrorMessage />
+
       <Link to='/'>
         <button>Go to home page</button>
       </Link>
@@ -17,4 +18,4 @@ const Page404 = () => {
   )
 }
 
-export default Page404;
+export default NotFoundPage;

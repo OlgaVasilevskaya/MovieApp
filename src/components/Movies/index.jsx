@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Movie from '../Movie';
 import Spinner from '../Spinner';
@@ -10,13 +10,13 @@ const Movies = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [isError, setIsError] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetchItems();
+    fetchMovies();
   }, []);
 
-  const fetchItems = useCallback(async () => {
+  const fetchMovies = useCallback(async () => {
     try {
       setIsLoading(true);
 
@@ -24,18 +24,16 @@ const Movies = () => {
         `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
       )
 
-      const resultList = await data.json();
+      const movieDetails = await data.json();
 
-      setMovies(resultList);
+      setMovies(movieDetails);
       setIsLoading(false);
 
-      if(isError) {
+      if(!isError) {
         throw new Error('Ooops, something went wrong');
       }
     } catch(e) {
-        console.log(e.message);
         setIsError(true);
-        console.log(setIsError, 'setIsError');
     }
   }, []);
 
@@ -45,6 +43,11 @@ const Movies = () => {
 
   return (
     <div className='movies'>
+      <select className='movies-city'>
+        <option selectedvalue="minsk">Minsk</option>
+        <option value="grodno">Grodno</option>
+      </select>
+
       {
         isLoading
           ? <Spinner />

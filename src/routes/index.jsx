@@ -1,9 +1,9 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Movies from '../components/Movies/Movies';
-import Header from '../components/Header/Header';
-import Details from '../components/Details/Details';
-import NotFoundPage from '../components/NotFoundPage/NotFoundPage';
+import Movies from '../components/Movies';
+import Header from '../components/Header';
+import Details from '../components/Details';
+import NotFoundPage from '../components/NotFoundPage';
 
 const AppRoutes = () => (
   <Router>

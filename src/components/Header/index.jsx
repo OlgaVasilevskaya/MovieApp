@@ -1,8 +1,8 @@
 import React from 'react';
 
-import logo from '../../assets/img/video-camera.png';
-
 import SearchInput from '../SearchInput';
+
+import logo from '../../assets/img/video-camera.png';
 
 import './header.scss';
 
