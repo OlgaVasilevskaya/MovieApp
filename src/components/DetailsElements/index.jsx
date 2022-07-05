@@ -2,7 +2,7 @@ import React from 'react';
 
 import Button from '../Button';
 
-import './detail.scss';
+import './detailsElements.scss';
 
 const Detail = (props) => {
   const {detail} = props;

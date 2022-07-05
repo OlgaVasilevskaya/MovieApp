@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Spinner from '../Spinner';
-import Detail from '../Detail';
+import DetailsElements from '../DetailsElements';
 
 import './details.scss';
 
@@ -47,7 +47,7 @@ const Details = ({ match }) => {
           ? <Spinner />
           : (
             <>
-              {<Detail key={details.eventId} detail={details} />}
+              {<DetailsElements key={details.eventId} detail={details} />}
             </>
           )
       }
