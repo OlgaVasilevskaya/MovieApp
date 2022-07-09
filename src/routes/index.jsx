@@ -4,10 +4,12 @@ import Movies from '../components/Movies';
 import Header from '../components/Header';
 import Details from '../components/Details';
 import NotFoundPage from '../components/NotFoundPage';
+import ScrollUp from '../components/ScrollUp/ScrollUp';
 
 const AppRoutes = () => (
   <Router>
     <Header />
+    <ScrollUp />
 
     <Routes>
       <Route path='/' element={<Movies />} />

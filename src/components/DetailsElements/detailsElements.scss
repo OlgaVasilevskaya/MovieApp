@@ -1,3 +1,13 @@
+.detail-wrapper {
+  display: flex;
+}
+
+.detail-descr {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #000000;
+}
+
 .details-title {
   text-align: center;
   font-size: 30px;
@@ -5,4 +15,8 @@
 
 .details-annotation {
   font-size: 15px;
+}
+
+.details-info p {
+  font-size: 20px;
 }

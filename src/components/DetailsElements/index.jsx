@@ -9,29 +9,28 @@ const Detail = (props) => {
 
   return (
     <div className='detail-wrapper'>
-      <div className='details-title'>{detail.name}</div>
+      <div className="detail-descr">
+        <div className='details-title'>{detail.name}</div>
 
-      <div className='details-annotation'>{detail.annotation}</div>
+        <div className='details-annotation'>{detail.annotation}</div>
+      </div>
 
-      <p>Choose cinema</p>
+      <div className="details-info">
+        <p>Choose cinema</p>
 
-      <select>
-        <option selectedvalue="cinema1">cinema1</option>
-        <option value="cinema2">cinema2</option>
-        <option value="cinema3">cinema3</option>
-        <option value="cinema4">cinema4</option>
-        <option value="cinema5">cinema5</option>
-        <option value="cinema6">cinema6</option>
-        <option value="cinema7">cinema7</option>
-      </select>
+        <select>
+          <option selectedvalue="ArenaCity">Arena City</option>
+          <option value="VokaCINEMA">VOKA CINEMA</option>
+        </select>
 
-      <p>Choose date</p>
-      <input type="date" />
+        <p>Choose date</p>
+        <input type="date" />
 
-      <p>Choose time</p>
-      <input type="time" />
+        <p>Choose time</p>
+        <input type="time" />
 
-      <Button />
+        <Button />
+      </div>
     </div>
   )
 }

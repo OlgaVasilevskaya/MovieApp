@@ -10,7 +10,9 @@ const Movie = (props) => {
 
   return (
     <div className='movie-wrapper'>
-      <img className='movie-img' src={movie.bannerLink} alt="movie" />
+      <div className='movie-img-wrapper'>
+        <img className='movie-img' src={movie.bannerLink} alt="movie" />
+      </div>
 
       <div className='movie-name'>{movie.name}</div>
 

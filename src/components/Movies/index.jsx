@@ -8,21 +8,35 @@ import './movies.scss';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
 
+  const [city, setCity] = useState(1);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [city]);
+
+  const handleChange = (e)  => { //не могу понять, почему не срабатывает условие. Подскажи, пжл, что не так
+    if (e.target.city === 'minsk') {
+
+      return setCity(1);
+    } else {
+
+      return setCity(5);
+    }
+  };
 
   const fetchMovies = useCallback(async () => {
     try {
       setIsLoading(true);
 
       const data = await fetch(
-        `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:1%7D&extended=true`
+        `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:${city}%7D&extended=true`
       )
+
+      console.log(city, 'city');
 
       const movieDetails = await data.json();
 
@@ -43,16 +57,16 @@ const Movies = () => {
 
   return (
     <div className='movies'>
-      <select className='movies-city'>
-        <option selectedvalue="minsk">Minsk</option>
-        <option value="grodno">Grodno</option>
-      </select>
-
       {
         isLoading
           ? <Spinner />
           : (
               <>
+                <select className='movies-city' value={city} onChange={handleChange}>
+                  <option value="minsk">minsk</option>
+                  <option value="grodno">grodno</option>
+                </select>
+
                 {movies.map((m) => <Movie key={m.eventId} movie={m} />)}
               </>
           )
