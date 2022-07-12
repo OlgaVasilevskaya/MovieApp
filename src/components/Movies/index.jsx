@@ -18,11 +18,9 @@ const Movies = () => {
     fetchMovies();
   }, []);
 
-  const handleChange = (e) => {
-    e.target.value === 'minsk'
-      ? setCity(1)
-        : setCity(5)
-  };
+  const handleChange = useCallback((e) => {
+    e.target.value === 'minsk' ? setCity(1) : setCity(5)
+  }, []);
 
   const fetchMovies = useCallback(async () => {
     try {
@@ -60,7 +58,6 @@ const Movies = () => {
                   <option>minsk</option>
                   <option>grodno</option>
                 </select>
-                {console.log(city)}
 
                 {movies.map((m) => <Movie key={m.eventId} movie={m} />)}
               </>

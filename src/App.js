@@ -5,6 +5,7 @@ import './App.scss';
 import AppRoutes from './routes';
 
 const App = () => {
+
   return (
 
     <AppRoutes />

@@ -5,15 +5,11 @@ import { FaAngleUp } from 'react-icons/fa';
 import './scrollUp.scss';
 
 const ScrollUp = () => {
-  const [showBtn, setShowBtn] = useState(false);
+  const [isBtnShown, setIsBtnShown] = useState(false);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 200) {
-          setShowBtn(true);
-        } else {
-          setShowBtn(false);
-        }
+      (window.scrollY > 200) ?  setIsBtnShown(true) : setIsBtnShown(false);
     });
   }, []);
 
@@ -26,7 +22,7 @@ const ScrollUp = () => {
 
     return (
         <div className="top-btm">
-            {showBtn && (
+            {isBtnShown && (
                 <FaAngleUp className="icon" onClick={handleScrollUp}
                 />
             )}

@@ -2,14 +2,8 @@ import React from 'react';
 
 import './button.scss';
 
-const Button = () => {
-
-  return (
-
-    <div>
-      <button className='buy-button'>Buy ticket</button>
-    </div>
-  );
-}
+const Button = () => (
+      <button className="buy-button">Buy ticket</button>
+);
 
 export default Button;
