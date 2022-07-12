@@ -4,12 +4,8 @@ import './App.scss';
 
 import AppRoutes from './routes';
 
-const App = () => {
-
-  return (
-
+const App = () => (
     <AppRoutes />
-  );
-}
+);
 
 export default App;

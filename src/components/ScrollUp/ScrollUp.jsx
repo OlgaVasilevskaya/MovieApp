@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import { FaAngleUp } from 'react-icons/fa';
-
 import './scrollUp.scss';
 
 const ScrollUp = () => {
@@ -23,8 +21,9 @@ const ScrollUp = () => {
     return (
         <div className="top-btm">
             {isBtnShown && (
-                <FaAngleUp className="icon" onClick={handleScrollUp}
-                />
+                <div className="icon" onClick={handleScrollUp}>
+                  Scroll Up
+                </div>
             )}
         </div>
     );
