@@ -25,7 +25,6 @@ const Movies = () => {
   const fetchMovies = useCallback(async () => {
     try {
       setIsLoading(true);
-
       const data = await fetch(
         `https://soft.silverscreen.by:8443/wssite/webapi/event/data?filter=%7B%22city%22:${city}%7D&extended=true`
       )
@@ -35,7 +34,7 @@ const Movies = () => {
       setMovies(movieDetails);
       setIsLoading(false);
 
-      if(!isError) {
+      if(isError) {
         throw new Error('Ooops, something went wrong');
       }
     } catch(e) {
