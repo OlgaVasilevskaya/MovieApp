@@ -5,7 +5,7 @@ import './App.scss';
 import AppRoutes from './routes';
 
 const App = () => (
-    <AppRoutes />
+  <AppRoutes />
 );
 
 export default App;

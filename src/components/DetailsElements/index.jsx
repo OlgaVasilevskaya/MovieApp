@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import Button from '../Button';
 
 import './detailsElements.scss';
 
 const Detail = (props) => {
-  const {detail} = props;
+  const { detail } = props;
+  const { name, annotation } = detail;
 
   return (
     <div className='detail-wrapper'>
       <div className="detail-descr">
-        <div className='details-title'>{detail.name}</div>
+        <div className='details-title'>{name}</div>
 
-        <div className='details-annotation'>{detail.annotation}</div>
+        <div className='details-annotation'>{annotation}</div>
       </div>
 
       <div className="details-info">
         <p>Choose cinema</p>
 
         <select>
-          <option selectedvalue="ArenaCity">Arena City</option>
+          <option value="ArenaCity">Arena City</option>
           <option value="VokaCINEMA">VOKA CINEMA</option>
         </select>
 

@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SearchInput from '../SearchInput';
-import Modal from '../Modal';
 
 import logo from '../../assets/img/video-camera.png';
 
 import './header.scss';
 
-const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const SwitchStatus = () => setIsModalOpen(!isModalOpen);
+const Header = (props) => {
+  const { setIsOpen } = props;
 
   return (
-
     <div className='header'>
       <img src={logo} alt="logo" />
 
       <SearchInput />
 
-      <button className="clickme" onClick={() => SwitchStatus()}>
+      <button className="clickme" onClick={setIsOpen}>
         Sign in
       </button>
-
-      <Modal show={isModalOpen} close={SwitchStatus} />
     </div>
   );
 }
