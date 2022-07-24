@@ -1,0 +1,26 @@
+.movie-img-wrapper {
+  height: 150px;
+  width: 200px;
+  margin-top: 20px;
+  transition: 1s;
+}
+
+.movie-img {
+  height: 150px;
+  width: 200px;
+}
+
+.movie-img:hover {
+  transform: scale(1.1);
+}
+
+.movie-name {
+  height: 50px;
+  width: 200px;
+  text-align: center;
+}
+
+.movie-age {
+  margin-top: 10px;
+  text-align: center;
+}
