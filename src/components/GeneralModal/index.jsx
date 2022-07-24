@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -22,13 +22,6 @@ const style = {
 export default function BasicModal(props) {
   const { isActive, setIsActive } = props;
 
-  const handleOpen = () => setIsActive(true);
-
-  const handleClose = () => {
-    setIsActive(false);
-    setFormType(true);
-  }
-
   const [formType, setFormType] = useState(true);
 
   const [email, setEmail] = useState('');
@@ -45,39 +38,54 @@ export default function BasicModal(props) {
 
   const [formError, setFormError] = useState('');
 
-  const [isUserAuthorized, setIsUserAuthorized] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const [isUserAuthrized, setIsUserAuthrized] = useState(false);
+
+  const [authUser, setAuthUser] = useState('');
+
+  const handleOpen = () => setIsActive(true);
+
+  const handleClose = () => {
+    setIsActive(false);
+    // setFormType(true);
+  }
 
   const handleSubmit = () => {
-    if((password === repeatPassword) && (password ?? repeatPassword)) {
+    if((password === repeatPassword)) {
       setFormError('');
     } else {
-      setFormError('passwords are not equal');
+      setFormError('Passwords are not equal');
     }
 
     const usersJson = localStorage.getItem('users');
-    console.log('usersJson', usersJson);
-    const users = JSON.parse(usersJson) || []; //null / []
-
-    if(JSON.parse(usersJson)) {
-
-    }
-
-    console.log('users', users);
+    const users = JSON.parse(usersJson) || [];
 
     const newUser ={
+      isAuth: false,
       email,
-      password
+      password,
+      firstName,
+      lastName,
+      phone
     }
 
     localStorage.setItem('users', JSON.stringify([...users, newUser]));
 
-    const userEmail = newUser.find(item => item.email === email);
-    const userEmail2 = JSON.stringify([...users, userEmail])
-    console.log(userEmail2, 'userEmail2')
+    const isEmailExist = users.find(item => item.email === email);
+
+    if(isEmailExist) {
+      setIsAuth('Email address already registered');
+    } else {
+      setIsAuth('You have successfully signed up, now you can log in to the app');
+    }
+
+    if(isEmailExist.password === password) {
+      localStorage.setItem('isUserAuthrized', email);
+      setIsUserAuthrized(email);
+      users.isAuth=true;
+    }
   };
-
-
-  // listen to local storage
 
   const handleChangeEmail = (e) => {
     console.log('e', e.target.value);
@@ -226,6 +234,8 @@ export default function BasicModal(props) {
 
               <footer className="modal-footer">
                 <div>{formError}</div>
+                <div>{isAuth}</div>
+                <div>{isUserAuthrized}</div>
 
                 <button onClick={handleSubmit} className="submit" disabled={(!email, !firstName, !lastName, !phone, !password, !repeatPassword)}>
                   Sign up

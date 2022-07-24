@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import './scrollUp.scss';
 
@@ -7,16 +7,16 @@ const ScrollUp = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      (window.scrollY > 200) ?  setIsBtnShown(true) : setIsBtnShown(false);
+      setIsBtnShown(window.scrollY > 200);
     });
   }, []);
 
-  const handleScrollUp = () => {
+  const handleScrollUp = useCallback(() => {
     window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
+      top: 0,
+      behavior: 'smooth',
     });
-  };
+  }, []);
 
     return (
         <div className="top-btm">

@@ -42,24 +42,27 @@ const Movies = () => {
     }
   }, []);
 
-  // if (isError) {
-  //   return <div>Ooops, something went wrong</div>
-  // }
-
   return (
     <div className='movies'>
       {
-        isLoading
-          ? <Spinner />
+        isError
+          ? <div>Ooops, something went wrong</div>
           : (
-              <>
-                <select className='movies-city' onChange={handleChange}>
-                  <option>minsk</option>
-                  <option>grodno</option>
-                </select>
+            <> 
+              {isLoading
+                ? <Spinner />
+                : (
+                  <>
+                    <select className='movies-city' onChange={handleChange}>
+                      <option>minsk</option>
+                      <option>grodno</option>
+                    </select>
 
-                {movies.map((m) => <Movie key={m.eventId} movie={m} />)}
-              </>
+                    {movies.map((m) => <Movie key={m.eventId} movie={m} />)}
+                  </>
+                )
+              }
+            </>
           )
       }
     </div>
