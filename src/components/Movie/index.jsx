@@ -1,5 +1,6 @@
+import { SentimentVerySatisfiedOutlined } from '@mui/icons-material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../Button';
 
@@ -9,6 +10,12 @@ const Movie = (props) => {
   const { movie } = props;
   const { bannerLink, name, ageLimit } = movie;
 
+  const navigate = useNavigate();
+
+  const handleBuyClick = (eventId) => () => {
+    navigate(`/movie/${movie.eventId}`);
+  }
+
   return (
     <div className='movie-wrapper'>
       <img className='movie-img' src={bannerLink} alt="movie" />
@@ -16,10 +23,10 @@ const Movie = (props) => {
       <div className='movie-name'>{name}</div>
 
       <div className='movie-age'>{ageLimit.acronym}</div>
-     
-      <Link to={`/movie/${movie.eventId}`}>
-        <Button />
-      </Link>
+
+      {/* <Button /> */}
+
+      <button onClick={handleBuyClick(movie.eventId)}>Buy ticket</button>
     </div>
   )
 }

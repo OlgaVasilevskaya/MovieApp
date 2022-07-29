@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 import './scrollUp.scss';
+import '../../colors.scss';
 
 const ScrollUp = () => {
   const [isBtnShown, setIsBtnShown] = useState(false);

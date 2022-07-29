@@ -42,20 +42,36 @@ export default function BasicModal(props) {
 
   const [isUserAuthrized, setIsUserAuthrized] = useState(false);
 
-  const [authUser, setAuthUser] = useState('');
+  const [isIncorrectEmail, setIsIncorrectEmail] = useState(false);
 
   const handleOpen = () => setIsActive(true);
 
   const handleClose = () => {
     setIsActive(false);
-    // setFormType(true);
   }
 
   const handleSubmit = () => {
+    const re = /\S+@\S+\.\S+/;
+
+    const result = re.test(email);
+
+    if(!result) {
+      setIsIncorrectEmail('Incorrect email');
+    } else {
+      setIsIncorrectEmail('');
+    }
+
     if((password === repeatPassword)) {
       setFormError('');
     } else {
       setFormError('Passwords are not equal');
+
+      const event = new StorageEvent('storage', {
+        key: 'isUserAuthrized',
+        newValue: 'email'
+      });
+
+      window.dispatchEvent(event);
     }
 
     const usersJson = localStorage.getItem('users');
@@ -87,35 +103,42 @@ export default function BasicModal(props) {
     }
   };
 
-  const handleChangeEmail = (e) => {
-    console.log('e', e.target.value);
-    setEmail(e.target.value);
-  };
+  const handleChangeInput = (type) => (e) => {
+    switch (type) {
+      case 'email':
+        setEmail(e.target.value);
 
-  const handleChangeFirstName = (e) => {
-    console.log('e', e.target.value);
-    setFirstName(e.target.value);
-  };
+      break;
 
-  const handleChangeLastName = (e) => {
-    console.log('e', e.target.value);
-    setLastName(e.target.value);
-  };
+      case 'password':
+        setPassword(e.target.value);
 
-  const handleChangePhone = (e) => {
-    console.log('e', e.target.value);
-    setPhone(e.target.value);
-  };
+      break;
 
-  const handleChangePassword = (e) => {
-    console.log('e', e.target.value);
-    setPassword(e.target.value);
-  };
+      case 'firstName':
+        setFirstName(e.target.value);
 
-  const handleChangeRepeatPassword = (e) => {
-    console.log('e', e.target.value);
-    setRepeatPassword(e.target.value);
-  };
+      break;
+
+      case 'lastName':
+        setLastName(e.target.value);
+
+      break;
+
+      case 'phone':
+        setPhone(e.target.value);
+
+      break;
+
+      case 'repeatPassword':
+        setRepeatPassword(e.target.value);
+
+      break;
+
+      default:
+        console.log('type', type);
+    }
+  }
 
   const handleSignUp = () => {
     //successfully signed in
@@ -125,7 +148,7 @@ export default function BasicModal(props) {
 
   const handleSignIn = () => {
     setFormType(true);
-  }
+  };
 
   // const validateEmail = (email) => {
   //   const re = /\S+@\S+\.\S+/;
@@ -148,7 +171,7 @@ export default function BasicModal(props) {
 
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <TextField 
-                onChange={handleChangeEmail}
+                onChange={handleChangeInput('email')}
                 value={email}
                 id="outlined-basic1" 
                 label="Email" 
@@ -156,7 +179,7 @@ export default function BasicModal(props) {
                 type="text"/>
 
                 <TextField 
-                onChange={handleChangePassword}
+                onChange={handleChangeInput('password')}
                 value={password}
                 id="outlined-basic2" 
                 label="Password" 
@@ -184,7 +207,7 @@ export default function BasicModal(props) {
 
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 <TextField 
-                onChange={handleChangeEmail}
+                onChange={handleChangeInput('email')}
                 value={email}
                 id="outlined-basic3" 
                 label="Email" 
@@ -192,7 +215,7 @@ export default function BasicModal(props) {
                 type="text"/>
 
                 <TextField 
-                onChange={handleChangeFirstName}
+                onChange={handleChangeInput('firstName')}
                 value={firstName}
                 id="outlined-basic4" 
                 label="First Name" 
@@ -200,7 +223,7 @@ export default function BasicModal(props) {
                 type="text"/>
 
                 <TextField 
-                onChange={handleChangeLastName}
+                onChange={handleChangeInput('lastName')}
                 value={lastName}
                 id="outlined-basic5" 
                 label="Last Name" 
@@ -208,7 +231,7 @@ export default function BasicModal(props) {
                 type="text"/>
 
                 <TextField 
-                onChange={handleChangePhone}
+                onChange={handleChangeInput('phone')}
                 value={phone}
                 id="outlined-basic6" 
                 label="Phone" 
@@ -216,7 +239,7 @@ export default function BasicModal(props) {
                 type="text"/>
 
                 <TextField 
-                onChange={handleChangePassword}
+                onChange={handleChangeInput('password')}
                 value={password}
                 id="outlined-basic7" 
                 label="Password" 
@@ -224,7 +247,7 @@ export default function BasicModal(props) {
                 type="password"/>
 
                 <TextField 
-                onChange={handleChangeRepeatPassword}
+                onChange={handleChangeInput('repeatPassword')}
                 value={repeatPassword}
                 id="outlined-basic8" 
                 label="Repeat Password" 
@@ -235,7 +258,7 @@ export default function BasicModal(props) {
               <footer className="modal-footer">
                 <div>{formError}</div>
                 <div>{isAuth}</div>
-                <div>{isUserAuthrized}</div>
+                <div>{isIncorrectEmail}</div>
 
                 <button onClick={handleSubmit} className="submit" disabled={(!email, !firstName, !lastName, !phone, !password, !repeatPassword)}>
                   Sign up

@@ -14,12 +14,16 @@ const Movies = () => {
 
   const [isError, setIsError] = useState(false);
 
+  const [cityValue, setCityValue] = useState(1);
+
   useEffect(() => {
     fetchMovies();
   }, []);
 
   const handleChange = useCallback((e) => {
-    e.target.value === 'minsk' ? setCity(1) : setCity(5)
+    setCity(e.target.value === 'minsk' ? 1 : 5);
+
+    setCityValue(e.target.value);
   }, []);
 
   const fetchMovies = useCallback(async () => {
@@ -53,7 +57,10 @@ const Movies = () => {
                 ? <Spinner />
                 : (
                   <>
-                    <select className='movies-city' onChange={handleChange}>
+                    <select className='movies-city' 
+                    onChange={handleChange}
+                    value={cityValue}
+                    >
                       <option>minsk</option>
                       <option>grodno</option>
                     </select>

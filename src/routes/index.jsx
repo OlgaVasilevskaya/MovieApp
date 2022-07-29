@@ -7,6 +7,7 @@ import Details from '../components/Details';
 import NotFoundPage from '../components/NotFoundPage';
 import ScrollUp from '../components/ScrollUp';
 import GeneralModal from '../components/GeneralModal';
+import UsersProfile from '../components/UsersProfile';
 
 const AppRoutes = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +24,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path='/' element={<Movies />} />
       <Route path='/movie/:eventId' element={<Details />} />
+      <Route path='/users-profile' element={<UsersProfile/>} />
       <Route path='*' element={<NotFoundPage />}></Route>
     </Routes>
 

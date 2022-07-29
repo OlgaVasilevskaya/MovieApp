@@ -42,11 +42,18 @@ const Details = ({ match }) => {
   return (
     <div className='details'>
       {
-        isLoading
-          ? <Spinner />
-          : (
-            <DetailsElements key={details.eventId} detail={details} />
-          )
+        isError
+        ? <div>Ooops, something went wrong</div>
+        : (
+          <>
+            {isLoading
+              ? <Spinner />
+              : (
+                <DetailsElements key={details.eventId} detail={details} />
+              )
+            }
+          </>
+        )
       }
     </div>
   );
